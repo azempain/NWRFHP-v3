@@ -45,7 +45,7 @@ export function Counter({
               setCount(endValue);
               clearInterval(timer);
             } else {
-              setCount(Math.floor(current));
+              setCount(Number.isInteger(value) ? Math.floor(current) : Math.round(current * 10) / 10);
             }
           }, 1000 / 60);
         }
@@ -62,7 +62,7 @@ export function Counter({
 
   return (
     <span ref={ref} className={className}>
-      {prefix}{count}{suffix}
+      {prefix}{Number.isInteger(value) ? Math.round(count) : count.toFixed(1)}{suffix}
     </span>
   );
 }

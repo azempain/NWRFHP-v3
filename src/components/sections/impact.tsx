@@ -1,9 +1,9 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
 import { Building, Users, Pill, MapPin, Heart, Award } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { useInView } from "@/hooks/use-in-view";
+import { Counter } from "@/components/animations/counter";
 
 const impactStats = [
   {
@@ -55,51 +55,6 @@ const impactStats = [
     color: "from-purple-500 to-purple-600",
   },
 ];
-
-function AnimatedCounter({ value, suffix = "", duration = 2 }: { value: number; suffix?: string; duration?: number }) {
-  const [count, setCount] = useState(0);
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const ref = useRef<HTMLSpanElement>(null);
-
-  useEffect(() => {
-    const element = ref.current;
-    if (!element || hasAnimated) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated) {
-          setHasAnimated(true);
-          let start = 0;
-          const end = value;
-          const increment = end / (duration * 60);
-          const timer = setInterval(() => {
-            start += increment;
-            if (start >= end) {
-              setCount(end);
-              clearInterval(timer);
-            } else {
-              setCount(Math.floor(start * 10) / 10);
-            }
-          }, 1000 / 60);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    observer.observe(element);
-
-    return () => {
-      observer.unobserve(element);
-    };
-  }, [value, duration, hasAnimated]);
-
-  return (
-    <span ref={ref}>
-      {Number.isInteger(value) ? Math.round(count) : count.toFixed(1)}
-      {suffix}
-    </span>
-  );
-}
 
 export function ImpactSection() {
   const { ref: headerRef, isInView: headerInView } = useInView<HTMLDivElement>();
@@ -168,7 +123,7 @@ export function ImpactSection() {
 
                 {/* Value */}
                 <p className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-1 md:mb-2">
-                  <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                  <Counter value={stat.value} suffix={stat.suffix} />
                 </p>
 
                 {/* Label */}
