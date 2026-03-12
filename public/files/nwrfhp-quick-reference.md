@@ -324,7 +324,7 @@ section { padding: 60px 0; }   /* Mobile */
       <h4 class="font-semibold mb-4">Resources</h4>
       <nav class="flex flex-col gap-2">
         <a href="/health">Health Coverage</a>
-        <a href="/infos">Information</a>
+        <a href="/gallery">Gallery & News</a>
       </nav>
     </div>
     <div>

@@ -1,15 +1,9 @@
 import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
+import { ScrollToTop } from '@/components/shared/scroll-to-top'
 import './globals.css'
 import { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import { Toaster } from '@/components/ui/sonner'
-
-const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-sans',
-})
 
 export const metadata: Metadata = {
   title: 'NWRFHP - Quality Healthcare for North West Region',
@@ -23,10 +17,11 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps): JSX.Element {
   return (
-    <html lang="en" className={inter.variable} suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body className="antialiased">
+        <ScrollToTop />
         <Header />
-        <main className="min-h-screen">{children}</main>
+        <main className="min-h-screen pt-25">{children}</main>
         <Footer />
         <Toaster />
       </body>

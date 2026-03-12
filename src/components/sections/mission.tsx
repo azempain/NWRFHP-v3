@@ -1,14 +1,14 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Target, Eye, Heart } from "lucide-react";
+import { useInView } from "@/hooks/use-in-view";
 
 const values = [
   {
     icon: Eye,
     title: "Our Vision",
     description:
-      "To assist the Ministry of Public Health in providing sustainable quality healthcare for the population of the North West Region.",
+      "To provide sustainable quality healthcare for the population of the North West Region.",
     iconBg: "bg-primary-100",
     iconColor: "text-primary-600",
   },
@@ -16,7 +16,7 @@ const values = [
     icon: Target,
     title: "Our Mission",
     description:
-      "Promoting access to quality healthcare by improving the performance of the health system across all levels.",
+      "To assist the Ministry of Public Health in Promoting access to quality healthcare of the population of the North West Region by stimulating the performance of the health system.",
     iconBg: "bg-accent-100",
     iconColor: "text-accent-600",
   },
@@ -31,16 +31,16 @@ const values = [
 ];
 
 export function MissionSection() {
+  const { ref: headerRef, isInView: headerInView } = useInView<HTMLDivElement>();
+  const { ref: gridRef, isInView: gridInView } = useInView<HTMLDivElement>();
+
   return (
-    <section className="py-16 lg:py-24 bg-neutral-50">
+    <section className="py-8 lg:py-12 bg-neutral-50">
       <div className="container">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12"
+        <div
+          ref={headerRef}
+          className={`text-center mb-12 transition-animate ${headerInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
         >
           <span className="inline-block px-4 py-1.5 mb-4 text-xs font-semibold uppercase tracking-wider text-neutral-600 bg-white border border-neutral-200 rounded-full">
             Why We Exist
@@ -51,18 +51,15 @@ export function MissionSection() {
           <p className="max-w-2xl mx-auto text-neutral-600">
             Dedicated to transforming healthcare delivery and improving lives across the North West Region
           </p>
-        </motion.div>
+        </div>
 
         {/* Cards Grid */}
-        <div className="grid gap-6 md:grid-cols-3">
+        <div ref={gridRef} className="grid gap-6 md:grid-cols-3">
           {values.map((item, index) => (
-            <motion.div
+            <div
               key={item.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group p-6 rounded-xl bg-white border border-neutral-200 hover:shadow-lg hover:border-neutral-300 transition-all duration-300"
+              className={`group p-6 rounded-xl bg-white border border-neutral-200 hover:shadow-lg hover:border-neutral-300 transition-all duration-300 ${gridInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
+              style={{ transitionDelay: `${index * 100}ms` }}
             >
               {/* Icon */}
               <div className={`mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg ${item.iconBg}`}>
@@ -76,7 +73,7 @@ export function MissionSection() {
               <p className="text-neutral-600 text-sm leading-relaxed">
                 {item.description}
               </p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

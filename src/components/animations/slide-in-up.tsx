@@ -1,8 +1,7 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef, ReactNode } from "react";
-import { slideInUp } from "@/lib/animations";
+import { ReactNode } from "react";
+import { useInView } from "@/hooks/use-in-view";
 
 interface SlideInUpProps {
   children: ReactNode;
@@ -11,19 +10,15 @@ interface SlideInUpProps {
 }
 
 export function SlideInUp({ children, delay = 0, className }: SlideInUpProps) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { ref, isInView } = useInView<HTMLDivElement>();
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      variants={slideInUp}
-      transition={{ delay }}
-      className={className}
+      className={`transition-animate ${className || ''} ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
+      style={{ transitionDelay: `${delay * 1000}ms` }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

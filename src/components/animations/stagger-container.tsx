@@ -1,8 +1,7 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef, ReactNode } from "react";
-import { staggerContainer } from "@/lib/animations";
+import { ReactNode } from "react";
+import { useInView } from "@/hooks/use-in-view";
 
 interface StaggerContainerProps {
   children: ReactNode;
@@ -10,18 +9,14 @@ interface StaggerContainerProps {
 }
 
 export function StaggerContainer({ children, className }: StaggerContainerProps) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { ref, isInView } = useInView<HTMLDivElement>();
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      variants={staggerContainer}
-      className={className}
+      className={`stagger-children ${className || ''} ${isInView ? 'is-visible' : ''}`}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

@@ -1,8 +1,7 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef, ReactNode } from "react";
-import { fadeIn } from "@/lib/animations";
+import { ReactNode } from "react";
+import { useInView } from "@/hooks/use-in-view";
 
 interface FadeInProps {
   children: ReactNode;
@@ -11,19 +10,15 @@ interface FadeInProps {
 }
 
 export function FadeIn({ children, delay = 0, className }: FadeInProps) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { ref, isInView } = useInView<HTMLDivElement>();
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      variants={fadeIn}
-      transition={{ delay }}
-      className={className}
+      className={`transition-animate ${className || ''} ${isInView ? 'opacity-100' : 'opacity-0'}`}
+      style={{ transitionDelay: `${delay * 1000}ms` }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

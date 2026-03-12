@@ -1,19 +1,29 @@
 import {
   HeroSection,
-  StatsSection,
+  AboutPreviewSection,
+  ServicesSection,
+  ImpactSection,
   MissionSection,
-  ProgramsSection,
-  CTASection
-} from '@/components/sections'
+  TestimonialsSection,
+  PartnersSection,
+  NewsSection,
+  FAQSection,
+  CTASection,
+} from "@/components/sections";
 
 export default function Home(): JSX.Element {
   return (
     <main>
       <HeroSection />
-      <StatsSection />
+      <AboutPreviewSection />
+      <ServicesSection />
+      <ImpactSection />
       <MissionSection />
-      <ProgramsSection />
+      <TestimonialsSection />
+      <PartnersSection />
+      <NewsSection />
+      <FAQSection />
       <CTASection />
     </main>
-  )
+  );
 }

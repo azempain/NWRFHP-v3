@@ -1048,10 +1048,10 @@ OLD SITE → NEW SITE
 /                          → / (homepage)
 /about                     → /about
 /programs                  → /programs
-/gallery                   → /gallery
+/gallery                   → /gallery (includes info & activities)
 /contact                   → /contact
 /health                    → /health
-/infos                     → /health (consolidate)
+/infos                     → /gallery (consolidated)
 /animation                 → /about (consolidate)
 /socials                   → Remove (add social links to footer)
 

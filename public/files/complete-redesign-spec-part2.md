@@ -823,8 +823,8 @@ export function Footer() {
               <Link href="/health" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                 Universal Health Coverage
               </Link>
-              <Link href="/infos" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                Health Information
+              <Link href="/gallery" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                Gallery & News
               </Link>
             </nav>
           </div>

@@ -1,7 +1,6 @@
 "use client";
 
-import { useInView, useMotionValue, useSpring } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface CounterProps {
   value: number;
@@ -9,6 +8,7 @@ interface CounterProps {
   className?: string;
   suffix?: string;
   prefix?: string;
+  duration?: number;
 }
 
 export function Counter({
@@ -16,30 +16,53 @@ export function Counter({
   direction = "up",
   className,
   suffix = "",
-  prefix = ""
+  prefix = "",
+  duration = 2,
 }: CounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const motionValue = useMotionValue(direction === "down" ? value : 0);
-  const springValue = useSpring(motionValue, {
-    damping: 60,
-    stiffness: 100,
-  });
-  const isInView = useInView(ref, { once: true, margin: "0px" });
+  const [count, setCount] = useState(direction === "down" ? value : 0);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
-    if (isInView) {
-      motionValue.set(direction === "down" ? 0 : value);
-    }
-  }, [motionValue, isInView, value, direction]);
+    const element = ref.current;
+    if (!element || hasAnimated) return;
 
-  useEffect(() => {
-    const unsubscribe = springValue.on("change", (latest) => {
-      if (ref.current) {
-        ref.current.textContent = `${prefix}${Math.floor(latest)}${suffix}`;
-      }
-    });
-    return unsubscribe;
-  }, [springValue, prefix, suffix]);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+          const startValue = direction === "down" ? value : 0;
+          const endValue = direction === "down" ? 0 : value;
+          const increment = (endValue - startValue) / (duration * 60);
+          let current = startValue;
 
-  return <span ref={ref} className={className}>{prefix}0{suffix}</span>;
+          const timer = setInterval(() => {
+            current += increment;
+            if (
+              (direction === "up" && current >= endValue) ||
+              (direction === "down" && current <= endValue)
+            ) {
+              setCount(endValue);
+              clearInterval(timer);
+            } else {
+              setCount(Number.isInteger(value) ? Math.floor(current) : Math.round(current * 10) / 10);
+            }
+          }, 1000 / 60);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(element);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [value, direction, duration, hasAnimated]);
+
+  return (
+    <span ref={ref} className={className}>
+      {prefix}{Number.isInteger(value) ? Math.round(count) : count.toFixed(1)}{suffix}
+    </span>
+  );
 }
