@@ -793,7 +793,7 @@ export default function GalleryPage() {
       {/* Lightbox Modal */}
       {selectedEvent && (
         <div
-          className={`fixed inset-0 z-50 bg-neutral-900/95 backdrop-blur-sm flex items-center justify-center p-4 transition-opacity duration-300 ${lightboxVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+          className={`fixed inset-0 z-10001 bg-neutral-900/95 backdrop-blur-sm flex items-center justify-center p-4 transition-opacity duration-300 ${lightboxVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
           onClick={closeLightbox}
         >
           {/* Close button */}
