@@ -129,7 +129,7 @@ export default function HealthPage() {
         title="Quality Healthcare"
         titleHighlight="For Everyone"
         description="Comprehensive health coverage ensuring accessible, affordable, and quality healthcare for all residents of the North West Region through five key service packages."
-        backgroundImage="/images/logu1.jpg"
+        backgroundImage="/images/UHC3.jpg"
         overlay="gradient"
       >
         <div className="flex flex-wrap justify-center gap-4">
@@ -234,7 +234,7 @@ export default function HealthPage() {
             >
               <div className="relative h-[450px] lg:h-[550px] rounded-3xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/images/logu1.jpg"
+                  src="/images/UHC3.jpg"
                   alt="Universal Health Coverage"
                   fill
                   className="object-cover"

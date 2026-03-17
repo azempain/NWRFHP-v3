@@ -35,7 +35,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 // Event categories
 const categories = [
@@ -117,7 +117,7 @@ const galleryEvents = [
     id: "2",
     title: "Regional Medical Store Operations",
     description: "Daily operations at our Regional Medical Store where we manage inventory for over 430 community pharmacies across the North West Region.",
-    image: "/images/store.jpg",
+    image: "/images/logistics.jpg",
     category: "distribution",
     date: "2024",
     location: "Regional Medical Store, Bamenda",
@@ -202,7 +202,7 @@ const galleryEvents = [
     id: "11",
     title: "GIZ Partnership Meeting",
     description: "Strategic coordination meeting with GIZ to strengthen healthcare delivery systems and expand coverage of essential health services.",
-    image: "/images/logo1.gif",
+    image: "/images/management1.jpg",
     category: "partnerships",
     date: "2024",
     location: "Conference Room",
@@ -221,7 +221,7 @@ const galleryEvents = [
     id: "13",
     title: "Children Under 5 Free Consultation",
     description: "Children aged 0-5 years receiving free medical consultations and malaria treatment at enrolled government health facilities.",
-    image: "/images/logu1.jpg",
+    image: "/images/UHC3.jpg",
     category: "uhc",
     date: "2024",
     location: "Health Facilities, NWR",
@@ -230,7 +230,7 @@ const galleryEvents = [
     id: "14",
     title: "Hemodialysis Service Delivery",
     description: "Our hemodialysis program provides kidney patients with unlimited dialysis sessions for just FCFA 15,000 annually - a 97% cost reduction.",
-    image: "/images/store.jpg",
+    image: "/images/ndehuhc.jpg",
     category: "uhc",
     date: "2024",
     location: "Dialysis Centers",
@@ -349,22 +349,37 @@ export default function GalleryPage() {
     setLightboxVisible(true);
   };
 
-  const closeLightbox = () => {
+  const closeLightbox = useCallback(() => {
     setLightboxVisible(false);
     setTimeout(() => setSelectedEvent(null), 300);
-  };
+  }, []);
 
-  const goToPrevious = () => {
-    const newIndex = (currentIndex - 1 + filteredEvents.length) % filteredEvents.length;
-    setCurrentIndex(newIndex);
-    setSelectedEvent(filteredEvents[newIndex]);
-  };
+  const goToPrevious = useCallback(() => {
+    setCurrentIndex(prev => {
+      const newIndex = (prev - 1 + filteredEvents.length) % filteredEvents.length;
+      setSelectedEvent(filteredEvents[newIndex]);
+      return newIndex;
+    });
+  }, [filteredEvents]);
 
-  const goToNext = () => {
-    const newIndex = (currentIndex + 1) % filteredEvents.length;
-    setCurrentIndex(newIndex);
-    setSelectedEvent(filteredEvents[newIndex]);
-  };
+  const goToNext = useCallback(() => {
+    setCurrentIndex(prev => {
+      const newIndex = (prev + 1) % filteredEvents.length;
+      setSelectedEvent(filteredEvents[newIndex]);
+      return newIndex;
+    });
+  }, [filteredEvents]);
+
+  useEffect(() => {
+    if (!lightboxVisible) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeLightbox();
+      else if (e.key === 'ArrowLeft') goToPrevious();
+      else if (e.key === 'ArrowRight') goToNext();
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxVisible, closeLightbox, goToPrevious, goToNext]);
 
   const getCategoryIcon = (categoryValue: string) => {
     const category = categories.find((c) => c.value === categoryValue);
@@ -693,9 +708,10 @@ export default function GalleryPage() {
                     className="group transition-animate opacity-100 translate-y-0 hover:-translate-y-2"
                     style={{ transitionDelay: `${Math.min(index * 60, 600)}ms` }}
                   >
-                    <div
+                    <button
+                      type="button"
                       onClick={() => openLightbox(event, index)}
-                      className="cursor-pointer bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 border border-neutral-100 h-full"
+                      className="w-full text-left bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 border border-neutral-100 h-full"
                     >
                       {/* Image Container */}
                       <div className="relative h-40 sm:h-48 md:h-56 lg:h-64 overflow-hidden bg-neutral-100">
@@ -744,7 +760,7 @@ export default function GalleryPage() {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </button>
                   </div>
                 );
               })
@@ -777,11 +793,13 @@ export default function GalleryPage() {
       {/* Lightbox Modal */}
       {selectedEvent && (
         <div
-          className={`fixed inset-0 z-50 bg-neutral-900/95 backdrop-blur-sm flex items-center justify-center p-4 transition-opacity duration-300 ${lightboxVisible ? 'opacity-100' : 'opacity-0'}`}
+          className={`fixed inset-0 z-50 bg-neutral-900/95 backdrop-blur-sm flex items-center justify-center p-4 transition-opacity duration-300 ${lightboxVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
           onClick={closeLightbox}
         >
           {/* Close button */}
           <button
+            type="button"
+            aria-label="Close lightbox"
             onClick={closeLightbox}
             className="absolute top-4 right-4 p-3 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 rounded-full transition-colors z-10"
           >
@@ -790,6 +808,8 @@ export default function GalleryPage() {
 
           {/* Navigation buttons */}
           <button
+            type="button"
+            aria-label="Previous image"
             onClick={(e) => {
               e.stopPropagation();
               goToPrevious();
@@ -799,6 +819,8 @@ export default function GalleryPage() {
             <ChevronLeft className="h-6 w-6" />
           </button>
           <button
+            type="button"
+            aria-label="Next image"
             onClick={(e) => {
               e.stopPropagation();
               goToNext();

@@ -456,7 +456,7 @@ export const sections: Section[] = [
         fullDescription:
           "Our Health Insurance Schemes program provides comprehensive healthcare coverage for vulnerable populations, starting with free care for all children under 5 years. This groundbreaking initiative ensures that the youngest and most vulnerable members of our communities receive complete healthcare coverage at any health facility in the region, eliminating financial barriers that previously prevented families from seeking care.",
         image: "/images/UHC1.jpg",
-        heroImage: "/images/logu1.jpg",
+        heroImage: "/images/UHC3.jpg",
         icon: Shield,
         color: "from-emerald-500 to-emerald-600",
         bgColor: "bg-emerald-50",

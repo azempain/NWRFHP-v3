@@ -132,7 +132,7 @@ export const programs: Program[] = [
     description: "Working towards accessible, affordable, and quality healthcare for all residents of the North West Region through comprehensive health insurance and subsidized care.",
     fullDescription: "The Universal Health Coverage (UHC) program is our flagship initiative to ensure that every resident of the North West Region has access to quality healthcare without facing financial hardship. Through government subsidies and community partnerships, we provide coverage for essential health services including maternal care, child health, and treatment for priority diseases.",
     image: "/images/UHC1.jpg",
-    heroImage: "/images/logu1.jpg",
+    heroImage: "/images/UHC3.jpg",
     icon: Shield,
     color: "from-emerald-500 to-emerald-600",
     bgColor: "bg-emerald-50",
