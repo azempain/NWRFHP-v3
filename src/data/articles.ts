@@ -33,12 +33,12 @@ export interface Article {
 export const articles: Article[] = [
   {
     id: "1",
-    slug: "nwrfhp-acquires-70-ton-trailer-truck",
-    title: "NWRFHP Acquires a New 70-Ton Trailer Truck",
+    slug: "nwrfhp-acquires-17-ton-trailer-truck",
+    title: "NWRFHP Acquires a New 17-Ton Trailer Truck",
     subtitle:
       "A Major Milestone for Pharmaceutical Supply Chain Efficiency and Healthcare Access in Cameroon's North West Region",
     excerpt:
-      "The North West Regional Fund for Health Promotion is proud to announce the purchase of a brand-new 70-ton trailer truck, dramatically expanding logistical capacity and directly addressing longstanding challenges of reaching remote and hard-to-access areas across the region.",
+      "The North West Regional Fund for Health Promotion is proud to announce the purchase of a brand-new 17-ton trailer truck, dramatically expanding logistical capacity and directly addressing longstanding challenges of reaching remote and hard-to-access areas across the region.",
     publishedAt: "2026-03-17",
     location: "Bamenda, North West Region",
     category: "Infrastructure",
@@ -49,18 +49,18 @@ export const articles: Article[] = [
     content: [
       {
         type: "paragraph",
-        text: "The North West Regional Fund for Health Promotion (NWRFHP), founded in 1987 and a cornerstone partner of Cameroon's Ministry of Public Health, is proud to announce the purchase of a brand-new 70-ton trailer truck. This strategic acquisition represents a significant achievement in our ongoing mission to deliver affordable, quality medicines and sustainable health services across the entire North West Region.",
+        text: "The North West Regional Fund for Health Promotion (NWRFHP), founded in 1987 and a cornerstone partner of Cameroon's Ministry of Public Health, is proud to announce the purchase of a brand-new 17-ton trailer truck. This strategic acquisition represents a significant achievement in our ongoing mission to deliver affordable, quality medicines and sustainable health services across the entire North West Region.",
       },
       {
         type: "paragraph",
-        text: "For over three decades, NWRFHP has managed one of the most robust pharmaceutical supply chains in Cameroon. We procure, store, and distribute essential commodities — including life-saving drugs, medical consumables, vaccines, and laboratory reagents to health districts, hospitals, integrated health centres, and community pharmacies. The new 70-ton trailer truck dramatically expands our logistical capacity and directly addresses longstanding challenges of reaching remote and hard-to-access areas.",
+        text: "For over three decades, NWRFHP has managed one of the most robust pharmaceutical supply chains in Cameroon. We procure, store, and distribute essential commodities — including life-saving drugs, medical consumables, vaccines, and laboratory reagents to health districts, hospitals, integrated health centres, and community pharmacies. The new 17-ton trailer truck dramatically expands our logistical capacity and directly addresses longstanding challenges of reaching remote and hard-to-access areas.",
       },
       {
         type: "image",
         src: "/assets/article_1/WhatsApp%20Image%202026-03-17%20at%2010.25.01.jpeg",
-        alt: "The new 70-ton trailer truck acquired by NWRFHP",
+        alt: "The new 17-ton trailer truck acquired by NWRFHP",
         caption:
-          "The new 70-ton trailer truck — a milestone in pharmaceutical supply chain infrastructure",
+          "The new 17-ton trailer truck — a milestone in pharmaceutical supply chain infrastructure",
       },
       {
         type: "section-heading",
@@ -68,7 +68,7 @@ export const articles: Article[] = [
       },
       {
         type: "paragraph",
-        text: "Previously, our fleet handled smaller loads with multiple trips, increasing fuel costs, delivery times, and exposure to road risks. The new 70-ton capacity trailer changes everything. It allows us to:",
+        text: "Previously, our fleet handled smaller loads with multiple trips, increasing fuel costs, delivery times, and exposure to road risks. The new 17-ton capacity trailer changes everything. It allows us to:",
       },
       {
         type: "bullets",
@@ -88,7 +88,7 @@ export const articles: Article[] = [
         src: "/assets/article_1/WhatsApp%20Image%202026-03-17%20at%2010.25.014.jpeg",
         alt: "NWRFHP team with the new trailer truck",
         caption:
-          "NWRFHP staff celebrate the arrival of the new 70-ton trailer at our Bamenda headquarters",
+          "NWRFHP staff celebrate the arrival of the new 17-ton trailer at our Bamenda headquarters",
       },
       {
         type: "section-heading",
