@@ -116,12 +116,6 @@ importers:
       embla-carousel-react:
         specifier: ^8.6.0
         version: 8.6.0(react@18.3.1)
-      eslint:
-        specifier: ^9.22.0
-        version: 9.39.2(jiti@2.6.1)
-      eslint-config-next:
-        specifier: ^15.2.4
-        version: 15.5.9(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
       input-otp:
         specifier: ^1.4.2
         version: 1.4.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -204,6 +198,12 @@ importers:
       drizzle-kit:
         specifier: ^0.29.0
         version: 0.29.1
+      eslint:
+        specifier: ^9.22.0
+        version: 9.39.2(jiti@2.6.1)
+      eslint-config-next:
+        specifier: ^15.2.4
+        version: 15.5.9(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
       jest:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@22.19.7)
