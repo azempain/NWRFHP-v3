@@ -14,6 +14,7 @@ import {
   LinkedinIcon,
   Menu,
   MessageCircle,
+  Newspaper,
   Phone,
   Users,
 } from "lucide-react";
@@ -96,6 +97,7 @@ export function Header() {
               onMouseLeave={() => setIsSectionsOpen(false)}
             >
               <button
+                type="button"
                 className="relative px-4 py-2 text-sm font-medium text-neutral-700 hover:text-primary-600 hover:bg-neutral-50 rounded-lg transition-colors group flex items-center gap-1"
               >
                 Our Sections
@@ -185,10 +187,17 @@ export function Header() {
               <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-primary-500 group-hover:w-4/5 transition-all duration-300 rounded-full" />
             </Link>
             <Link
+              href="/articles"
+              className="relative px-4 py-2 text-sm font-medium text-neutral-700 hover:text-primary-600 hover:bg-neutral-50 rounded-lg transition-colors group"
+            >
+              Articles
+              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-primary-500 group-hover:w-4/5 transition-all duration-300 rounded-full" />
+            </Link>
+            <Link
               href="/gallery"
               className="relative px-4 py-2 text-sm font-medium text-neutral-700 hover:text-primary-600 hover:bg-neutral-50 rounded-lg transition-colors group"
             >
-              Gallery & News
+              Activities & Events
               <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-primary-500 group-hover:w-4/5 transition-all duration-300 rounded-full" />
             </Link>
           </nav>
@@ -268,6 +277,7 @@ export function Header() {
                       {sections.map((section, index) => (
                         <div key={section.id} className={`transition-animate ${isOpen ? "animate-slide-left" : "opacity-0"}`} style={{ transitionDelay: `${(index + 1) * 80}ms` }}>
                           <button
+                            type="button"
                             onClick={() =>
                               setExpandedMobileSection(
                                 expandedMobileSection === section.id ? null : section.id
@@ -334,7 +344,8 @@ export function Header() {
                       {[
                         { href: "/team", label: "Our Team", icon: Users },
                         { href: "/contact", label: "Contact", icon: Phone },
-                        { href: "/gallery", label: "Gallery & News", icon: Camera },
+                        { href: "/articles", label: "Articles", icon: Newspaper },
+                        { href: "/gallery", label: "Activities & Events", icon: Camera },
                       ].map((link, index) => (
                         <div key={link.href} className={`transition-animate ${isOpen ? "animate-slide-left" : "opacity-0"}`} style={{ transitionDelay: `${(sections.length + index + 2) * 80}ms` }}>
                           <Link

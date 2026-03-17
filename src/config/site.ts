@@ -1,4 +1,4 @@
-import { Heart, Camera, Users, Phone, Info, Layers, type LucideIcon } from 'lucide-react';
+import { Heart, Camera, Users, Phone, Info, Layers, Newspaper, type LucideIcon } from 'lucide-react';
 
 /**
  * Central Site Configuration
@@ -33,7 +33,8 @@ export const navigationLinks: NavigationLink[] = [
   { href: '/sections', label: 'Our Sections', icon: Layers },
   { href: '/team', label: 'Our Team', icon: Users },
   { href: '/contact', label: 'Get in Touch', icon: Phone },
-  { href: '/gallery', label: 'Gallery & News', icon: Camera },
+  { href: '/articles', label: 'Articles', icon: Newspaper },
+  { href: '/gallery', label: 'Activities & Events', icon: Camera },
 ];
 
 // ============================================
@@ -120,7 +121,8 @@ export const siteConfig = {
       { label: "Training Programs", href: "/programs/training-refresher-courses" },
     ],
     organization: [
-      { label: "Gallery", href: "/gallery" },
+      { label: "Articles", href: "/articles" },
+      { label: "Activities & Events", href: "/gallery" },
       { label: "Our Team", href: "/team" },
       { label: "UHC Services", href: "/health" },
       { label: "About Us", href: "/about" },

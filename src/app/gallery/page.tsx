@@ -390,7 +390,7 @@ export default function GalleryPage() {
     <div className="min-h-screen bg-neutral-50 overflow-x-hidden">
       {/* Hero Section */}
       <PageHero
-        badge={{ icon: Camera, text: "Gallery & News" }}
+        badge={{ icon: Camera, text: "Activities & Events" }}
         title="Our Activities"
         titleHighlight="& Events"
         description="Explore moments captured across our healthcare programs, community outreach initiatives, and organizational events that showcase our commitment to quality healthcare."
